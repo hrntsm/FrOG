@@ -90,14 +90,14 @@ namespace FrOG
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.cancelButton_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // buttonOK
             // 
             resources.ApplyResources(this.buttonOK, "buttonOK");
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.okButton_Click);
+            this.buttonOK.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // tabOptimize
             // 
@@ -164,14 +164,14 @@ namespace FrOG
             resources.ApplyResources(this.buttonStop, "buttonStop");
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            this.buttonStop.Click += new System.EventHandler(this.ButtonStop_Click);
             // 
             // ButtonStart
             // 
             resources.ApplyResources(this.ButtonStart, "ButtonStart");
             this.ButtonStart.Name = "ButtonStart";
             this.ButtonStart.UseVisualStyleBackColor = true;
-            this.ButtonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
             // GroupOptimizationAlgorithm
             // 

@@ -5,4 +5,9 @@
     <StartProgram>C:\Program Files\Rhinoceros 5 %2864-bit%29\System\Rhino.exe</StartProgram>
     <StartArguments>/nosplash /runscript="_-Grasshopper Editor Load Document Open D:\Dropbox\Opossum_Development\160929_optimization_test.gh"</StartArguments>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="OptimizationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
