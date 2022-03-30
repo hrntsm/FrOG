@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using FrOG.Solvers;
 
 namespace FrOG
@@ -17,7 +18,7 @@ namespace FrOG
                 var presetNames = new List<string>();
 
                 foreach (var solver in GetSolverList) presetNames.AddRange(solver.GetPresetNames());
-                          
+
                 return presetNames;
             }
         }
@@ -36,7 +37,7 @@ namespace FrOG
 
         public static string GetPresetByIndex(int index)
         {
-                return PresetNames[index];
+            return PresetNames[index];
         }
 
         public static ISolver GetSolverByIndex(int index)
@@ -82,7 +83,7 @@ namespace FrOG
         //This is where most of the work is done.
         //The constructor should do only minimal work, since all solvers are instanced when the FrOG window loads.
 
-        bool RunSolver(List<Variable> variables, Func<IList<decimal>,double> evaluate, string preset, string expertsettings, string installFolder, string documentPath);
+        bool RunSolver(List<Variable> variables, Func<IList<decimal>, double> evaluate, string preset, string expertsettings, string installFolder, string documentPath);
 
         //Return eventual error messages to show in MessageBox after the solver stopped, otherwise return empty.
         string GetErrorMessage();

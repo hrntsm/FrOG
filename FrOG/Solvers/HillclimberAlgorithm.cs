@@ -46,7 +46,7 @@ namespace FrOG.Solvers
         /// </summary>
         public double fxopt { get; private set; }
 
-        private RandomDistributions rnd;
+        private readonly RandomDistributions rnd;
 
         /// <summary>
         /// Initialize a stochastic hill climber optimization algorithm. Assuming minimization problems.
@@ -57,7 +57,7 @@ namespace FrOG.Solvers
         /// <param name="itermax">Maximum iterations.</param>
         /// <param name="evalfnc">Evaluation function.</param>
         /// <param name="seed">Seed for random number generator.</param>
-        public HillclimberAlgorithm(double [] lb, double [] ub, double stepsize, int itermax, Func<double[], double> evalfnc, int seed)
+        public HillclimberAlgorithm(double[] lb, double[] ub, double stepsize, int itermax, Func<double[], double> evalfnc, int seed)
         {
             this.lb = lb;
             this.ub = ub;
@@ -80,7 +80,7 @@ namespace FrOG.Solvers
             for (int i = 0; i < n; i++)
             {
                 x[i] = rnd.NextDouble() * (ub[i] - lb[i]) + lb[i];
-                stdev[i] = stepsize * (ub[i] - lb[i]); 
+                stdev[i] = stepsize * (ub[i] - lb[i]);
             }
             double fx = evalfnc(x);
 

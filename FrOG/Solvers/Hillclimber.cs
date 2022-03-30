@@ -28,7 +28,7 @@ namespace FrOG.Solvers
                 { "stepsize", 0.1},
                 //The Froginterface is in charge of the number of iterations.
                 //If the solvers requires this parameters, I would use a high number.
-                { "itermax", 1000} 
+                { "itermax", 1000}
             };
 
             _presets.Add("Hillclimber", standardSettings);
@@ -60,9 +60,9 @@ namespace FrOG.Solvers
 
             try
             {
-                var seed = (int) settings["seed"];
+                var seed = (int)settings["seed"];
                 var stepsize = settings["stepsize"];
-                var itermax = (int) settings["itermax"];
+                var itermax = (int)settings["itermax"];
                 var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, eval, seed);
                 hc.Solve();
                 Xopt = hc.get_Xoptimum();

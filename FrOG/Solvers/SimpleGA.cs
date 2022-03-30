@@ -142,15 +142,15 @@ namespace FrOG.Solvers
 
                     if (seedin != null)
                         seed = Convert.ToInt16(seedin);
-                    else 
+                    else
                         seed = (int)settings["seed"];
-                   
+
                     int itermax = (int)settings["itermax"];
 
-                    var ga = new MetaheuristicsLibrary.SolversSO.SimpleGA(lb, ub, integer, itermax, eval, seed, GAsettings);
-                    ga.solve();
-                    Xopt = ga.get_Xoptimum();
-                    Fxopt = ga.get_fxoptimum();
+                    // var ga = new MetaheuristicsLibrary.SolversSO.SimpleGA(lb, ub, integer, itermax, eval, seed, GAsettings);
+                    // ga.solve();
+                    // Xopt = ga.get_Xoptimum();
+                    // Fxopt = ga.get_fxoptimum();
                 }
                 else
                 {

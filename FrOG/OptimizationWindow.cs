@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
 using Grasshopper.GUI;
 
 namespace FrOG
@@ -33,7 +34,7 @@ namespace FrOG
             foreach (var preset in SolverList.PresetNames) comboBoxPresets.Items.Add(preset);
             comboBoxPresets.SelectedIndex = 0;
 
-           
+
             //Log Default File Name
             textBoxLogName.Text = String.Format("{0}_log", DateTime.Now.ToString("yyMMdd"));
 

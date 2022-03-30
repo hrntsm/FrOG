@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+
 using GalapagosComponents;
+
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Special;
 
@@ -23,7 +25,7 @@ namespace FrOG
         public int VariableN { get { return Variables.Count; } }
 
         public OptimizationComponent OptimizationComponent { get; private set; }
-       
+
         //Variables as String
         public string VariablesStr
         {
@@ -111,7 +113,7 @@ namespace FrOG
             }
 
             _output = OptimizationComponent.Params.Input[1].Sources[0];
-         
+
             if (_output == null)
             {
                 return false;
@@ -179,7 +181,7 @@ namespace FrOG
 
         //Check Variable Values
         private bool CheckVariableValues(IList<decimal> parameters)
-        {       
+        {
 
             //Check Variable Number
             if (parameters.Count != VariableN)
@@ -231,7 +233,7 @@ namespace FrOG
 
         public double[] GetSliderValuesDouble()
         {
-            return  Array.ConvertAll(GetSliderValues(), x => (double)x);
+            return Array.ConvertAll(GetSliderValues(), x => (double)x);
         }
 
         //Set Variable Values
@@ -249,7 +251,7 @@ namespace FrOG
                     MessageBox.Show("Slider is null", "FrOG Error");
                     return false;
                 }
- 
+
                 decimal val;
 
                 switch (slider.Slider.Type)

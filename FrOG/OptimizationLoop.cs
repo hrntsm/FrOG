@@ -41,12 +41,12 @@ namespace FrOG
         private static IList<decimal> _bestParams;
         private static OptimizationResult.ResultType _resultType;
 
-        private static Log _log;
+        private static readonly Log _log;
         private static LoggerLog _loggerLog;
         private static Stopwatch _stopwatchTotal;
         private static Stopwatch _stopwatchLoop;
         private static double _stopwatchPreviousMilliseconds;
-        private static double _updateFrequency = 100;
+        private static readonly double _updateFrequency = 100;
         private static double _updateElapsed;
 
         //List of Best Values
@@ -134,8 +134,8 @@ namespace FrOG
                 MessageBox.Show(Log.GetResultString(bestResult, MaxIter, MaxIterNoProgress, MaxDuration), "FrOG Result");
             else
                 MessageBox.Show(String.Format("Finished {0} runs" + Environment.NewLine + "Overall best value {1}", finishedRuns, bestResult.Value), "FrOG Result");
-            
-            if(_worker != null) _worker.CancelAsync();
+
+            if (_worker != null) _worker.CancelAsync();
         }
 
         //Run Solver (Main function)
@@ -171,7 +171,7 @@ namespace FrOG
 
 
             //Log Settings
-            if (_log!= null) _log.LogSettings(preset);
+            if (_log != null) _log.LogSettings(preset);
             //_log?.LogSettings(preset);
 
             //Run Solver
@@ -206,7 +206,7 @@ namespace FrOG
 
         public static double EvaluateFunction(IList<decimal> values)
         {
-            if(_log!=null) _log.LogIteration(_iterations + 1);
+            if (_log != null) _log.LogIteration(_iterations + 1);
             //_log?.LogIteration(_iterations + 1);
             //var strMessage = "Iteration " + _iterations + Environment.NewLine;
             //strMessage += $"Maximize: {BolMaximize}" + Environment.NewLine;
@@ -220,7 +220,7 @@ namespace FrOG
             }
 
             //Log Parameters
-            if(_log!=null) _log.LogParameters(string.Join(",", values), _stopwatchLoop);
+            if (_log != null) _log.LogParameters(string.Join(",", values), _stopwatchLoop);
             //_log?.LogParameters(string.Join(",", values), _stopwatchLoop);
 
             _updateElapsed = _stopwatchTotal.ElapsedMilliseconds - _stopwatchPreviousMilliseconds;
@@ -249,8 +249,8 @@ namespace FrOG
             //MessageBox.Show($"Function value: {objectiveValue}");
 
             //BolLog Solution
-            if(_log != null) _log.LogFunctionValue(objectiveValue, _stopwatchLoop);
-            if (_loggerLog != null) _loggerLog.LogLoggerLine(_component.GhInOut.DocumentName,string.Join(",", values), objectiveValue);
+            if (_log != null) _log.LogFunctionValue(objectiveValue, _stopwatchLoop);
+            if (_loggerLog != null) _loggerLog.LogLoggerLine(_component.GhInOut.DocumentName, string.Join(",", values), objectiveValue);
             //_log?.LogFunctionValue(objectiveValue, _stopwatchLoop);
 
             _iterations += 1;
@@ -272,7 +272,7 @@ namespace FrOG
             Debug.WriteLine($"Elapsed {_updateElapsed} Limit {_updateFrequency}");
 
             if (_updateElapsed > _updateFrequency)
-            {    
+            {
                 _worker.ReportProgress(100, BestValues);
                 _updateElapsed = 0;
                 _stopwatchPreviousMilliseconds = _stopwatchTotal.ElapsedMilliseconds;
@@ -280,7 +280,7 @@ namespace FrOG
             }
 
             //BolLog Minimum
-            if(_log!=null) _log.LogCurrentBest(_bestParams, _bestValue, _stopwatchTotal, _iterationsCurrentBest);
+            if (_log != null) _log.LogCurrentBest(_bestParams, _bestValue, _stopwatchTotal, _iterationsCurrentBest);
             //_log?.LogCurrentBest(_bestParams, _bestValue, _stopwatchTotal, _iterationsCurrentBest);
 
             //Optimization Results

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+
 using Grasshopper.GUI;
 using Grasshopper.GUI.Canvas;
 using Grasshopper.Kernel;
@@ -13,7 +14,7 @@ namespace FrOG
         internal OptimizationWindow OptimizationWindow;
         internal GrasshopperInOut GhInOut;
 
-        public override Guid ComponentGuid 
+        public override Guid ComponentGuid
         {
             get { return new Guid("{9975d89e-9b54-4de5-95ac-d672f3998f69}"); }
         }
@@ -91,4 +92,3 @@ namespace FrOG
 
     }
 }
-
