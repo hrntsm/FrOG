@@ -114,12 +114,7 @@ namespace FrOG
 
             _output = OptimizationComponent.Params.Input[1].Sources[0];
 
-            if (_output == null)
-            {
-                return false;
-            }
-
-            return true;
+            return _output != null;
         }
 
         //Get Variable String
@@ -332,7 +327,6 @@ namespace FrOG
         //Get Objective Value
         public double GetObjectiveValue()
         {
-            double objectiveValue;
 
             if (_output == null)
             {
@@ -354,7 +348,7 @@ namespace FrOG
                 return double.NaN;
             }
 
-            var bolCast = objectiveGoo.CastTo(out objectiveValue);
+            var bolCast = objectiveGoo.CastTo(out double objectiveValue);
 
             if (bolCast) return objectiveValue;
 

@@ -52,21 +52,21 @@ namespace FrOG.Solvers
                 integer[i] = variables[i].Integer;
             }
 
-            Func<double[], double> eval = x =>
+            double Eval(double[] x)
             {
                 var decis = x.Select(Convert.ToDecimal).ToList();
                 return evaluate(decis);
-            };
+            }
 
             try
             {
                 var seed = (int)settings["seed"];
                 var stepsize = settings["stepsize"];
                 var itermax = (int)settings["itermax"];
-                var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, eval, seed);
+                var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, Eval, seed);
                 hc.Solve();
-                Xopt = hc.get_Xoptimum();
-                Fxopt = hc.get_fxoptimum();
+                Xopt = hc.Get_Xoptimum();
+                Fxopt = hc.Get_fxoptimum();
 
                 return true;
             }
@@ -86,10 +86,7 @@ namespace FrOG.Solvers
         /// Get the variable vector of the final solution.
         /// </summary>
         /// <returns>Variable vector.</returns>
-        public double[] get_Xoptimum()
-        {
-            return Xopt;
-        }
+        public double[] Get_Xoptimum() => Xopt;
 
         public IEnumerable<string> GetPresetNames()
         {

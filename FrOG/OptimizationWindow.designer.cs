@@ -186,7 +186,7 @@ namespace FrOG
             this.comboBoxPresets.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxPresets, "comboBoxPresets");
             this.comboBoxPresets.Name = "comboBoxPresets";
-            this.comboBoxPresets.SelectedIndexChanged += new System.EventHandler(this.comboBoxPresets_SelectedIndexChanged);
+            this.comboBoxPresets.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPresets_SelectedIndexChanged);
             // 
             // GroupOptimizationType
             // 
@@ -342,7 +342,7 @@ namespace FrOG
             0,
             0,
             0});
-            this.numUpDownIterations.ValueChanged += new System.EventHandler(this.numUpDownIterations_ValueChanged);
+            this.numUpDownIterations.ValueChanged += new System.EventHandler(this.NumUpDownIterations_ValueChanged);
             // 
             // CheckBoxDuration
             // 
@@ -379,7 +379,7 @@ namespace FrOG
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // textBoxExpertSettings
             // 

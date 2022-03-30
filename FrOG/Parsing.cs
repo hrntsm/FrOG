@@ -20,8 +20,7 @@ namespace FrOG
 
         public static double ParseDouble(string str)
         {
-            double val;
-            var isDouble = double.TryParse(str, NumberStyles.Integer | NumberStyles.AllowDecimalPoint | NumberStyles.Float, CultureInfo.InvariantCulture, out val);
+            var isDouble = double.TryParse(str, NumberStyles.Integer | NumberStyles.AllowDecimalPoint | NumberStyles.Float, CultureInfo.InvariantCulture, out double val);
             if (isDouble) return val;
 
             MessageBox.Show(String.Format("Wrong parameter type(double or int) for parse to double: {0})", str), "FrOG Parse Error");

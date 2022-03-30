@@ -20,33 +20,33 @@ namespace FrOG.Solvers
         /// <summary>
         /// Lower bound for each variable.
         /// </summary>
-        public double[] lb { get; private set; }
+        public double[] Lb { get; private set; }
         /// <summary>
         /// Upper bound for each variable.
         /// </summary>
-        public double[] ub { get; private set; }
+        public double[] Ub { get; private set; }
         /// <summary>
         /// Stepsize.
         /// </summary>
-        public double stepsize { get; private set; }
+        public double Stepsize { get; private set; }
         /// <summary>
         /// Maximum iterations.
         /// </summary>
-        public int itermax { get; private set; }
+        public int Itermax { get; private set; }
         /// <summary>
         /// Evaluation function.
         /// </summary>
-        public Func<double[], double> evalfnc { get; private set; }
+        public Func<double[], double> Evalfnc { get; private set; }
         /// <summary>
         /// Variable vector of final solution.
         /// </summary>
-        public double[] xopt { get; private set; }
+        public double[] Xopt { get; private set; }
         /// <summary>
         /// Cost of final solution.
         /// </summary>
-        public double fxopt { get; private set; }
+        public double Fxopt { get; private set; }
 
-        private readonly RandomDistributions rnd;
+        private readonly RandomDistributions _rnd;
 
         /// <summary>
         /// Initialize a stochastic hill climber optimization algorithm. Assuming minimization problems.
@@ -59,13 +59,13 @@ namespace FrOG.Solvers
         /// <param name="seed">Seed for random number generator.</param>
         public HillclimberAlgorithm(double[] lb, double[] ub, double stepsize, int itermax, Func<double[], double> evalfnc, int seed)
         {
-            this.lb = lb;
-            this.ub = ub;
-            this.stepsize = stepsize;
-            this.itermax = itermax;
-            this.evalfnc = evalfnc;
+            this.Lb = lb;
+            this.Ub = ub;
+            this.Stepsize = stepsize;
+            this.Itermax = itermax;
+            this.Evalfnc = evalfnc;
 
-            this.rnd = new RandomDistributions(seed);
+            this._rnd = new RandomDistributions(seed);
         }
 
         /// <summary>
@@ -73,27 +73,27 @@ namespace FrOG.Solvers
         /// </summary>
         public void Solve()
         {
-            int n = lb.Length;
+            int n = Lb.Length;
             double[] x = new double[n];
             double[] stdev = new double[n];
 
             for (int i = 0; i < n; i++)
             {
-                x[i] = rnd.NextDouble() * (ub[i] - lb[i]) + lb[i];
-                stdev[i] = stepsize * (ub[i] - lb[i]);
+                x[i] = _rnd.NextDouble() * (Ub[i] - Lb[i]) + Lb[i];
+                stdev[i] = Stepsize * (Ub[i] - Lb[i]);
             }
-            double fx = evalfnc(x);
+            double fx = Evalfnc(x);
 
-            for (int t = 0; t < itermax; t++)
+            for (int t = 0; t < Itermax; t++)
             {
                 double[] xtest = new double[n];
                 for (int i = 0; i < n; i++)
                 {
-                    xtest[i] = rnd.NextGaussian(x[i], stdev[i]);
-                    if (xtest[i] > ub[i]) xtest[i] = ub[i];
-                    else if (xtest[i] < lb[i]) xtest[i] = lb[i];
+                    xtest[i] = _rnd.NextGaussian(x[i], stdev[i]);
+                    if (xtest[i] > Ub[i]) xtest[i] = Ub[i];
+                    else if (xtest[i] < Lb[i]) xtest[i] = Lb[i];
                 }
-                double fxtest = evalfnc(xtest);
+                double fxtest = Evalfnc(xtest);
 
                 if (double.IsNaN(fxtest)) return;
 
@@ -102,9 +102,9 @@ namespace FrOG.Solvers
                     xtest.CopyTo(x, 0);
                     fx = fxtest;
 
-                    xopt = new double[n];
-                    x.CopyTo(xopt, 0);
-                    fxopt = fx;
+                    Xopt = new double[n];
+                    x.CopyTo(Xopt, 0);
+                    Fxopt = fx;
                 }
             }
         }
@@ -113,18 +113,18 @@ namespace FrOG.Solvers
         /// Get the variable vector of the final solution.
         /// </summary>
         /// <returns>Variable vector.</returns>
-        public double[] get_Xoptimum()
+        public double[] Get_Xoptimum()
         {
-            return this.xopt;
+            return this.Xopt;
         }
 
         /// <summary>
         /// Get the cost value of the final solution.
         /// </summary>
         /// <returns>Cost value.</returns>
-        public double get_fxoptimum()
+        public double Get_fxoptimum()
         {
-            return this.fxopt;
+            return this.Fxopt;
         }
     }
 

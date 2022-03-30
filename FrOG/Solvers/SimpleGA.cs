@@ -29,7 +29,7 @@ namespace FrOG.Solvers
 
         public SimpleGA()
         {
-            var SGA_Settings_WW = new Dictionary<string, double>{
+            var sGA_Settings_WW = new Dictionary<string, double>{
                 {"maxgen", 2000},
                 { "itermax", 10000},
                 { "seed", 1},
@@ -42,7 +42,7 @@ namespace FrOG.Solvers
                 { "elite", 1}
             };
 
-            var SGA_Settings_n4_A = new Dictionary<string, double>{
+            var sGA_Settings_n4_A = new Dictionary<string, double>{
                 {"maxgen", 2000},
                 { "itermax", 10000},
                 { "seed", 1},
@@ -55,7 +55,7 @@ namespace FrOG.Solvers
                 { "elite", 2}
             };
 
-            var SGA_Settings_n4_B = new Dictionary<string, double>{
+            var sGA_Settings_n4_B = new Dictionary<string, double>{
                 {"maxgen", 2000},
                 { "itermax", 10000},
                 { "seed", 1},
@@ -68,7 +68,7 @@ namespace FrOG.Solvers
                 { "elite", 1}
             };
 
-            var SGA_Settings_n4_C = new Dictionary<string, double>{
+            var sGA_Settings_n4_C = new Dictionary<string, double>{
                 {"maxgen", 2000},
                 { "itermax", 10000},
                 { "seed", 1},
@@ -81,10 +81,10 @@ namespace FrOG.Solvers
                 { "elite", 1}
             };
 
-            _presets.Add("SGA_WW", SGA_Settings_WW);
-            _presets.Add("SGA_n4_A", SGA_Settings_n4_A);
-            _presets.Add("SGA_n4_B", SGA_Settings_n4_B);
-            _presets.Add("SGA_n4_C", SGA_Settings_n4_C);
+            _presets.Add("SGA_WW", sGA_Settings_WW);
+            _presets.Add("SGA_n4_A", sGA_Settings_n4_A);
+            _presets.Add("SGA_n4_B", sGA_Settings_n4_B);
+            _presets.Add("SGA_n4_C", sGA_Settings_n4_C);
         }
 
         public bool RunSolver(List<Variable> variables, Func<IList<decimal>, double> evaluate, string preset, string expertsettings, string installFolder, string documentPath)
@@ -119,32 +119,28 @@ namespace FrOG.Solvers
                 integer[i] = variables[i].Integer;
             }
 
-            Func<double[], double> eval = x =>
+            double Eval(double[] x)
             {
                 var decis = x.Select(Convert.ToDecimal).ToList();
                 return evaluate(decis);
-            };
+            }
 
             try
             {
                 if (preset.Equals("SGA_n4_A") || preset.Equals("SGA_n4_B") || preset.Equals("SGA_n4_C") || preset.Equals("SGA_WW"))
                 {
-                    Dictionary<string, object> GAsettings = new Dictionary<string, object>();
-                    GAsettings.Add("maxgen", (int)settings["maxgen"]);
-                    GAsettings.Add("popsize", (int)settings["popsize"]);
-                    GAsettings.Add("k", settings["k"]);
-                    GAsettings.Add("pcross", settings["pcross"]);
-                    GAsettings.Add("pmut", settings["pmut"]);
-                    GAsettings.Add("d", settings["d"]);
-                    GAsettings.Add("r", settings["r"]);
-                    GAsettings.Add("elite", settings["elite"]);
-                    int seed;
-
-                    if (seedin != null)
-                        seed = Convert.ToInt16(seedin);
-                    else
-                        seed = (int)settings["seed"];
-
+                    Dictionary<string, object> gaSettings = new Dictionary<string, object>
+                    {
+                        { "maxgen", (int)settings["maxgen"] },
+                        { "popsize", (int)settings["popsize"] },
+                        { "k", settings["k"] },
+                        { "pcross", settings["pcross"] },
+                        { "pmut", settings["pmut"] },
+                        { "d", settings["d"] },
+                        { "r", settings["r"] },
+                        { "elite", settings["elite"] }
+                    };
+                    int seed = seedin != null ? Convert.ToInt16(seedin) : (int)settings["seed"];
                     int itermax = (int)settings["itermax"];
 
                     // var ga = new MetaheuristicsLibrary.SolversSO.SimpleGA(lb, ub, integer, itermax, eval, seed, GAsettings);
@@ -157,10 +153,10 @@ namespace FrOG.Solvers
                     var seed = (int)settings["seed"];
                     var stepsize = settings["stepsize"];
                     var itermax = (int)settings["itermax"];
-                    var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, eval, seed);
+                    var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, Eval, seed);
                     hc.Solve();
-                    Xopt = hc.get_Xoptimum();
-                    Fxopt = hc.get_fxoptimum();
+                    Xopt = hc.Get_Xoptimum();
+                    Fxopt = hc.Get_fxoptimum();
                 }
                 return true;
             }
@@ -180,7 +176,7 @@ namespace FrOG.Solvers
         /// Get the variable vector of the final solution.
         /// </summary>
         /// <returns>Variable vector.</returns>
-        public double[] get_Xoptimum()
+        public double[] Get_Xoptimum()
         {
             return Xopt;
         }

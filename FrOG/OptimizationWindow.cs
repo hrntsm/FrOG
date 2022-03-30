@@ -89,7 +89,7 @@ namespace FrOG
             ghCanvas.DisableUI();
 
             //Read expert settings
-            OptimizationLoop.solversettings = textBoxExpertSettings.Text;
+            OptimizationLoop.Solversettings = textBoxExpertSettings.Text;
 
             //Lock Buttons
             ButtonStart.Enabled = false;
@@ -115,8 +115,7 @@ namespace FrOG
 
             //Number of Runs
             OptimizationLoop.BolRuns = CheckBoxRuns.Checked;
-            if (CheckBoxRuns.Checked) OptimizationLoop.Runs = Convert.ToInt32(numUpDownRuns.Value);
-            else OptimizationLoop.Runs = 1;
+            OptimizationLoop.Runs = CheckBoxRuns.Checked ? Convert.ToInt32(numUpDownRuns.Value) : 1;
 
             //Start Optimization
             backgroundWorkerSolver.RunWorkerAsync(_frogComponent);
@@ -228,7 +227,7 @@ namespace FrOG
             numUpDownRuns.Enabled = CheckBoxRuns.Checked;
         }
 
-        private void comboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             groupBox2.Text = SolverList.PresetNames[comboBoxPresets.SelectedIndex];
         }
@@ -238,12 +237,12 @@ namespace FrOG
 
         }
 
-        private void numUpDownIterations_ValueChanged(object sender, EventArgs e)
+        private void NumUpDownIterations_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
+        private void GroupBox2_Enter(object sender, EventArgs e)
         {
 
         }
