@@ -113,7 +113,7 @@ namespace FrOG.Solvers
         /// Get the variable vector of the final solution.
         /// </summary>
         /// <returns>Variable vector.</returns>
-        public double[] Get_Xoptimum()
+        public double[] Get_XOptimum()
         {
             return this.Xopt;
         }
@@ -122,7 +122,7 @@ namespace FrOG.Solvers
         /// Get the cost value of the final solution.
         /// </summary>
         /// <returns>Cost value.</returns>
-        public double Get_fxoptimum()
+        public double Get_fxOptimum()
         {
             return this.Fxopt;
         }

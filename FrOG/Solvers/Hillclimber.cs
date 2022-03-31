@@ -9,11 +9,11 @@ namespace FrOG.Solvers
         /// <summary>
         /// Variable vector of final solution.
         /// </summary>
-        public double[] Xopt { get; private set; }
+        public double[] XOpt { get; private set; }
         /// <summary>
         /// Cost of final solution.
         /// </summary>
-        public double Fxopt { get; private set; }
+        public double FxOpt { get; private set; }
 
         //public Dictionary<string, string> settings = new Dictionary<string, string>();
 
@@ -65,8 +65,8 @@ namespace FrOG.Solvers
                 var itermax = (int)settings["itermax"];
                 var hc = new HillclimberAlgorithm(lb, ub, stepsize, itermax, Eval, seed);
                 hc.Solve();
-                Xopt = hc.Get_Xoptimum();
-                Fxopt = hc.Get_fxoptimum();
+                XOpt = hc.Get_XOptimum();
+                FxOpt = hc.Get_fxOptimum();
 
                 return true;
             }
@@ -86,7 +86,7 @@ namespace FrOG.Solvers
         /// Get the variable vector of the final solution.
         /// </summary>
         /// <returns>Variable vector.</returns>
-        public double[] Get_Xoptimum() => Xopt;
+        public double[] Get_XOptimum() => XOpt;
 
         public IEnumerable<string> GetPresetNames()
         {
