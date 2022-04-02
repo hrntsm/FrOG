@@ -103,14 +103,13 @@ namespace FrOG.Solvers
                     double fxTest = EvalFunc(xTest);
                     study.tell(trial, fxTest);
 
-                    if (double.IsNaN(fxTest)) return;
+                    if (double.IsNaN(fxTest))
+                    {
+                        return;
+                    }
                 }
                 dynamic vis = optuna.visualization.plot_optimization_history(study);
                 vis.show();
-
-                var xDict = (Dictionary<string, double>)study.best_params();
-                XOpt = xDict.Values.ToArray();
-                FxOpt = study.best_value;
             }
         }
 
